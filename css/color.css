@@ -1,0 +1,20 @@
+:root {
+    --main-color:#e5ecec;
+    --bg-color: #fefefe;
+    --first-bg-color: #f5f9fa;
+    --second-bg-color: #e8f2f1;
+    --task-color: #ffffff;
+    --notification-color: #ff9300;
+    --first-color: #000000;
+    --second-color: #9c9c9c;
+    --third-color: #adadad;
+    --fourth-color: #46998a;
+    --scroll-color: #2c9a85;
+    --random-color-1: #ff9300;
+    --random-color-2: #9567fc;
+    --random-color-3: #3cda2e;
+    --random-color-4: #4a6bda;
+    --random-color-5: #cce207;
+    --random-color-6: #ff5100;
+    --random-color-7: #5f5f5f;
+}
