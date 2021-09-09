@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>EPlanner Login</title>
+    <!-- FONT AWSOME START -->
+    <link rel="stylesheet" href="./assets/font/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- FONT AWSOME END -->
+
+    <!-- MAIN CSS START -->
+    <link rel="stylesheet" href="./css/color.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- MAIN CSS END -->
+</head>
+
+<body>
+
+    <div class="form-container">
+        <div class="left-content">
+
+            <!--radio buttons start-->
+            <input type="radio" name="radio-btn" id="radio1" checked>
+            <input type="radio" name="radio-btn" id="radio2">
+            <input type="radio" name="radio-btn" id="radio3">
+            <!--radio buttons end-->
+
+            <div class="images-slider">
+                <div class="image slide-first">
+                    <img src="./assets/images/slider-images/login_template.jpg" alt="">
+                </div>
+                <div class="image">
+                    <img src="./assets/images/slider-images/login_template_2.jpg" alt="">
+                </div>
+                <div class="image">
+                    <img src="./assets/images/slider-images/login_template_3.jpg" alt="">
+                </div>
+            </div>
+
+            <!--automatic navigation start-->
+            <div class="navigation-auto">
+                <div class="auto-btn1"></div>
+                <div class="auto-btn2"></div>
+                <div class="auto-btn3"></div>
+            </div>
+            <!--automatic navigation end-->
+
+            <!--manual navigation start-->
+            <div class="slider-control">
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+            </div>
+            <!--manual navigation end-->
+
+        </div>
+        <div class="right-content">
+            <div class="form-logo">
+                <img src="./assets/images/ePlanner-logo.png" alt="">
+            </div>
+            <div class="form-controller">
+                <div class="login-container">
+                    <div class="form-header">
+                        <h3>Hello</h3>
+                        <p>To keep connected with us please login with personal information by email address and
+                            password</p>
+                    </div>
+                    <form id="login-form" method="POST">
+                        <div class="input-group">
+                            <div class="form-icon">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </div>
+                            <input type="email" placeholder="Email" required>
+                        </div>
+                        <div class="input-group">
+                            <div class="form-icon">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            </div>
+                            <input type="password" placeholder="Password">
+                        </div>
+                        <div class="form-links">
+                            <div class="remember-me-box">
+                                <input type="checkbox" name="check-remember" id="" required>
+                                <label for="check-remember">Remember me</label>
+
+                            </div>
+                            <a href="#">Forget Password?</a>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="btn-login">
+                                Login
+                            </button>
+                            <button class="go-register-form" onclick="showRegisterForm();">
+                                Create Account
+                            </button>
+                        </div>
+                        <div class="login-options">
+                            <p>You can login with</p>
+                            <ul class="list-login">
+                                <li class="facebook-login"><a href="">
+                                        Facebook
+                                    </a></li>
+                                <li class="google-login"><a href="">
+                                        Google
+                                    </a></li>
+                                <li class="github-login btn-disabled"><a href="">
+                                        Github
+                                    </a></li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+                <div class="register-container">
+                    <div class="form-header">
+                        <h3>Join Us</h3>
+                    </div>
+                    <form id="register-form" action="">
+                        <div class="register-options">
+                            <ul class="list-register">
+                                <li class="facebook-register"><a href="">
+                                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                                    </a></li>
+                                <li class="google-register"><a href="">
+                                        <i class="fa fa-google" aria-hidden="true"></i>
+                                    </a></li>
+                                <li class="github-register btn-disabled"><a href="">
+                                        <i class="fa fa-github" aria-hidden="true"></i>
+                                    </a></li>
+                            </ul>
+                            <p>Or use your email address</p>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="form-icon">
+                                <i class="fa fa-user-circle" aria-hidden="true"></i>
+                            </div>
+                            <input type="text" placeholder="Full Name" required>
+                        </div>
+                        <div class="input-group">
+                            <div class="form-icon">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </div>
+                            <input type="email" placeholder="Email" required>
+                        </div>
+                        <div class="input-group">
+                            <div class="form-icon">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            </div>
+                            <input type="password" placeholder="Password">
+                        </div>
+                        <div class="input-group">
+                            <div class="form-icon">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            </div>
+                            <input type="password" placeholder="Confirm Password">
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="btn-register">
+                                Create Account
+                            </button>
+                        </div>
+                        <p class="go-login-form" onclick="showLoginForm();">
+                            Already have an account?
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="./js/loginPage.js"></script>
+
+</html>
