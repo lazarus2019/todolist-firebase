@@ -1,14 +1,16 @@
 :root {
+    /* Colors */
     --main-color:#e5ecec;
     --bg-color: #fefefe;
     --first-bg-color: #f5f9fa;
     --second-bg-color: #e8f2f1;
     --task-color: #ffffff;
     --notification-color: #ff9300;
+    --task-drop-bg: #f4f8f9;
     --first-color: #000000;
     --second-color: #9c9c9c;
     --third-color: #adadad;
-    --fourth-color: #46998a;
+    --fourth-color: rgb(84, 155, 142);
     --scroll-color: #2c9a85;
     --random-color-1: #ff9300;
     --random-color-2: #9567fc;
