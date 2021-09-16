@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>EPlanner Login</title>
+    <title>Welcome to EPlanner</title>
     <!-- FONT AWSOME START -->
     <link rel="stylesheet" href="./assets/font/font-awesome-4.7.0/css/font-awesome.min.css">
     <!-- FONT AWSOME END -->
@@ -12,13 +12,17 @@
     <link rel="stylesheet" href="./css/color.css">
     <link rel="stylesheet" href="./css/style.css">
     <!-- MAIN CSS END -->
+
+    <!-- SWEETALERT CSS START -->
+    <link rel="stylesheet" href="./node_modules/sweetalert2/dist/sweetalert2.min.css">
+    <!-- SWEETALERT CSS END -->
 </head>
 
 <body>
 
     <div class="form-container">
         <div class="left-content">
-
+            
             <!--radio buttons start-->
             <input type="radio" name="radio-btn" id="radio1" checked>
             <input type="radio" name="radio-btn" id="radio2">
@@ -80,9 +84,8 @@
                         </div>
                         <div class="form-links">
                             <div class="remember-me-box">
-                                <input type="checkbox" name="check-remember" id="" required>
+                                <input type="checkbox" id="check-remember" required>
                                 <label for="check-remember">Remember me</label>
-
                             </div>
                             <a href="#">Forget Password?</a>
                         </div>
@@ -90,22 +93,22 @@
                             <button type="submit" class="btn-login">
                                 Login
                             </button>
-                            <button class="go-register-form" onclick="showRegisterForm();">
+                            <button class="go-register-form">
                                 Create Account
                             </button>
                         </div>
                         <div class="login-options">
                             <p>You can login with</p>
                             <ul class="list-login">
-                                <li class="facebook-login"><a href="">
+                                <li class="facebook-login">
                                         Facebook
-                                    </a></li>
-                                <li class="google-login"><a href="">
+                                    </li>
+                                <li class="google-login">
                                         Google
-                                    </a></li>
-                                <li class="github-login btn-disabled"><a href="">
+                                    </li>
+                                <li class="github-login btn-disabled">
                                         Github
-                                    </a></li>
+                                    </li>
                             </ul>
                         </div>
                     </form>
@@ -117,15 +120,15 @@
                     <form id="register-form" action="">
                         <div class="register-options">
                             <ul class="list-register">
-                                <li class="facebook-register"><a href="">
+                                <li class="facebook-register">
                                         <i class="fa fa-facebook" aria-hidden="true"></i>
-                                    </a></li>
-                                <li class="google-register"><a href="">
+                                    </li>
+                                <li class="google-register">
                                         <i class="fa fa-google" aria-hidden="true"></i>
-                                    </a></li>
-                                <li class="github-register btn-disabled"><a href="">
+                                    </li>
+                                <li class="github-register btn-disabled">
                                         <i class="fa fa-github" aria-hidden="true"></i>
-                                    </a></li>
+                                    </li>
                             </ul>
                             <p>Or use your email address</p>
                         </div>
@@ -159,7 +162,7 @@
                                 Create Account
                             </button>
                         </div>
-                        <p class="go-login-form" onclick="showLoginForm();">
+                        <p class="go-login-form">
                             Already have an account?
                         </p>
                     </form>
@@ -168,7 +171,27 @@
         </div>
     </div>
 
+    <div class="loading-container hidden">
+        <div class="loading">
+            <span>Loading...</span>
+        </div>    
+    </div>
+
+   
 </body>
-<script src="./js/loginPage.js"></script>
+<!-- FireBase Declare -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase.js"></script>
+
+<!-- include firebase database -->
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-database.js"></script>
+<!-- Auth -->
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-auth.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-analytics.js"></script>
+<script src="./js/firebase.init.js"></script>
+<script src="./node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+<script defer type="module" src="./js/loginPage.js"></script>
 
 </html>
