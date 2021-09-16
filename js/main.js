@@ -1,3 +1,67 @@
+import modal, { swalAlert, redirectAlert, singleAlert} from './modal.js';
+// singleAlert(icon, title, text)
+
+// LOADING ANIMATION
+const loadingAnimation = document.querySelector('.loading-container');
+function showLoading(){
+    loadingAnimation.classList.remove('hidden');
+}
+function hideLoading(){
+    loadingAnimation.classList.add('hidden');
+}
+
+var userKey = '';
+
+const database = firebase.database();
+
+// Check user already login or not
+window.onload = function(){
+    showLoading();
+    let email = localStorage.getItem('email');
+    // redirect user to login page if local storage don't have any email value
+    if(email == "") redirectAlert(modal.MODAL_CONTENT.redirect_permission);
+    else{
+        getUserInfo(email).then(result =>{
+            userKey = result;
+            // Checking userKey
+            if(userKey != ''){
+                swalAlert(modal.MODAL_CONTENT.get_success)
+                getUserByKey(userKey).then(user =>{
+                    let userInfo = user;
+                }).catch(error2 =>{
+                    swalAlert(modal.MODAL_CONTENT.get_error)
+                })
+            }else{
+                redirectAlert(modal.MODAL_CONTENT.redirect_valid_email);
+            }
+        }).catch(error =>{
+            singleAlert('error', 'Firebase Error', error);
+        });
+    }
+    hideLoading()
+}
+
+async function getUserInfo(email) {
+    let user;
+    let result = database.ref("/users").orderByChild('email').equalTo(email);
+    await result.once('value', (snapshot) => {
+        user = snapshot.val();
+        let userInfo = Object.values(user);
+        // console.log(userInfo[0].email); // get email
+        // Getting userKey by email 
+        userKey = Object.keys(user)[0]; // userKey is the first key name of the object
+    })
+    return userKey;
+}
+
+async function getUserByKey(userKey){
+    let userInfo;
+    await database.ref('/users').child(userKey).once('value', (user)=>{
+        userInfo = user.val();
+    })
+    return userInfo;
+}
+
 // Declare the task drop here
 const taskDrop = document.createElement('p');
 taskDrop.classList.add('task-drop');
@@ -95,13 +159,4 @@ else if (localStorage.getItem("sidebar") == "dark") {
 } else {
     // Maximize is default sidebar mode
     localStorage.setItem("sidebar", "maximize");
-}
-
-// LOADING ANIMATION
-const loadingAnimation = document.querySelector('.loading-container');
-function showLoading(){
-    loadingAnimation.classList.remove('hidden');
-}
-function hideLoading(){
-    loadingAnimation.classList.add('hidden');
 }
