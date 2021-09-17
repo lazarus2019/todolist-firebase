@@ -61,7 +61,6 @@ function saveUserInfo(newUser) {
     isEmailExist(newUser.email)
         .then(result => {
             // Saving user data if email address haven't been use
-            console.log(result)
             if (!result && result != undefined) {
                 let autoId = database.ref('/users').push().key;
                 let data = {};

@@ -1,6 +1,8 @@
 import modal, { swalAlert, redirectAlert, singleAlert} from './modal.js';
 // singleAlert(icon, title, text)
 
+import * as activityService from './activity_task_service.js';
+
 // LOADING ANIMATION
 const loadingAnimation = document.querySelector('.loading-container');
 function showLoading(){
@@ -19,20 +21,22 @@ window.onload = function(){
     showLoading();
     let email = localStorage.getItem('email');
     // redirect user to login page if local storage don't have any email value
-    if(email == "") redirectAlert(modal.MODAL_CONTENT.redirect_permission);
+    if(email == "" || email == null) redirectAlert(modal.MODAL_CONTENT.redirect_permission);
     else{
         getUserInfo(email).then(result =>{
             userKey = result;
             // Checking userKey
-            if(userKey != ''){
+            if(userKey == '' || userKey == null){ 
+                redirectAlert(modal.MODAL_CONTENT.redirect_valid_email);
+            }else{
                 swalAlert(modal.MODAL_CONTENT.get_success)
+                activityService.defaultFunction(userKey)
                 getUserByKey(userKey).then(user =>{
                     let userInfo = user;
+                   printUserInfo(userInfo)
                 }).catch(error2 =>{
                     swalAlert(modal.MODAL_CONTENT.get_error)
                 })
-            }else{
-                redirectAlert(modal.MODAL_CONTENT.redirect_valid_email);
             }
         }).catch(error =>{
             singleAlert('error', 'Firebase Error', error);
@@ -46,10 +50,14 @@ async function getUserInfo(email) {
     let result = database.ref("/users").orderByChild('email').equalTo(email);
     await result.once('value', (snapshot) => {
         user = snapshot.val();
-        let userInfo = Object.values(user);
+        if(user == null){
+            userKey = null;
+        }else{
+            userKey = Object.keys(user)[0]; // userKey is the first key name of the object
+        }
+        // let userInfo = Object.values(user);
         // console.log(userInfo[0].email); // get email
         // Getting userKey by email 
-        userKey = Object.keys(user)[0]; // userKey is the first key name of the object
     })
     return userKey;
 }
@@ -60,6 +68,18 @@ async function getUserByKey(userKey){
         userInfo = user.val();
     })
     return userInfo;
+}
+
+const userNamePreview = document.querySelector('.user-info > p');
+const userNameController = document.querySelector('.user h3');
+const emailController = document.querySelector('.user p');
+const userPhoto = document.querySelector('.user-info > img');
+
+function printUserInfo(userInfo){
+    userNamePreview.textContent = userInfo.name;
+    userNameController.textContent = userInfo.name;
+    emailController.textContent = '@' + userInfo.email.split('@')[0];
+    userPhoto.setAttribute('src', userInfo.photoURL);
 }
 
 // Declare the task drop here
@@ -160,3 +180,10 @@ else if (localStorage.getItem("sidebar") == "dark") {
     // Maximize is default sidebar mode
     localStorage.setItem("sidebar", "maximize");
 }
+
+const logoutBtn = document.querySelector('.log-out-btn');
+logoutBtn.addEventListener('click', ()=>{
+    firebase.auth().signOut();
+    localStorage.removeItem('email');
+    redirectAlert(modal.MODAL_CONTENT.redirect_logout);
+})
