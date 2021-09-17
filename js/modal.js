@@ -58,7 +58,7 @@ const MODAL_CONTENT = {
         icon: 'success',
         title: 'Yay, your account has been created',
         html: 'We will direct you to home page in next <b></b>s.',
-        timer: 5,
+        timer: 3,
         url: './index.html'
     },
     create_user_failed:{
@@ -70,14 +70,21 @@ const MODAL_CONTENT = {
         icon: 'warning',
         title: "You don't have permission to access this page!",
         html: 'We will direct you to another page in next <b></b>s.',
-        timer: 5,
+        timer: 3,
         url: './login.html'
     },
     redirect_valid_email:{
         icon: 'warning',
         title: "Invalid email!",
         html: 'We will direct you to another page in next <b></b>s.',
-        timer: 5,
+        timer: 3,
+        url: './login.html'
+    },
+    redirect_logout:{
+        icon: 'success',
+        title: "Sign-out success",
+        html: 'See you later! We will direct you to login page in next <b></b>s.',
+        timer: 2,
         url: './login.html'
     }
 }
